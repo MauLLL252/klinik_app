@@ -9,7 +9,6 @@ class PoliDetail extends StatefulWidget {
   @override
   State<PoliDetail> createState() => _PoliDetailState();
 }
-
 class _PoliDetailState extends State<PoliDetail> {
   @override
   Widget build(BuildContext context) {
