@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'poli_update_form.dart';
 import '../model/poli.dart';
+import 'poli_page.dart';
 
 class PoliDetail extends StatefulWidget {
   final Poli poli;
@@ -9,6 +11,7 @@ class PoliDetail extends StatefulWidget {
   @override
   State<PoliDetail> createState() => _PoliDetailState();
 }
+
 class _PoliDetailState extends State<PoliDetail> {
   @override
   Widget build(BuildContext context) {
@@ -28,21 +31,56 @@ class _PoliDetailState extends State<PoliDetail> {
           SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green, foregroundColor: Colors.white),
-                child: const Text("Ubah"),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
-                child: const Text("Hapus"),
-              ),
-            ],
+            children: [_tombolUbah(), _tombolHapus()],
           ),
         ],
       ),
     );
   }
-}
+
+  _tombolUbah() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PoliUpdateForm(poli: widget.poli),
+          ),
+        );
+      },
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+      child: Text("Ubah"),
+    );
+  }
+
+  _tombolHapus() {
+    return ElevatedButton(
+      onPressed: () {
+        AlertDialog alertDialog = AlertDialog(
+          content: Text("Yakin ingin hapus data ini?"),
+          actions: [
+            // tombol yes
+            ElevatedButton(onPressed: (){
+              Navigator.pop(context);
+              Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => PoliPage()));
+            },
+             child: Text("YES"),
+             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+        ),
+        // tombol batal
+        ElevatedButton(onPressed: (){
+          Navigator.pop(context);
+        }, 
+        child: Text("Tidak"),
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+        )
+          ],
+        );
+        showDialog(context: context, builder: (context) => alertDialog);
+      },
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+      child: Text("Hapus"),
+    );
+  }
+  }
