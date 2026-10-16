@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:klinik_app/ui/poli_item.dart';
 import '../model/poli.dart';
-import 'poli_detail.dart';
 import 'poli_form.dart';
-
+import '../widget/sidebar.dart';
 class PoliPage extends StatefulWidget {
   const PoliPage({super.key});
 
@@ -15,6 +14,7 @@ class _PoliPageState extends State<PoliPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Sidebar(),
       appBar: AppBar(
         title: Text("Data poli geda gedi"),
         backgroundColor: Colors.blue,
