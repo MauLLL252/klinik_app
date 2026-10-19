@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../ui/beranda.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -20,52 +21,62 @@ class _LoginState extends State<Login> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Login Admin", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500)),
+                Text(
+                  "Login Admin",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                ),
                 SizedBox(height: 50),
                 Center(
-                  child: Form(child: Container(
-                    width: MediaQuery.of(context).size.width / 1.3,
-                    child: Column(
-                      children: [
-                        _usernameTextField(),
-                        SizedBox(height: 20), 
-                        _passwordTextField(), 
-                        SizedBox(height: 40), 
-                        _tombolLogin()
-                      ],
+                  child: Form(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 1.3,
+                      child: Column(
+                        children: [
+                          _usernameTextField(),
+                          SizedBox(height: 20),
+                          _passwordTextField(),
+                          SizedBox(height: 40),
+                          _tombolLogin(),
+                        ],
+                      ),
                     ),
-                  )),
-                )
+                  ),
+                ),
               ],
             ),
-          )),
+          ),
+        ),
       ),
     );
-}
+  }
 
-Widget _usernameTextField() {
-  return TextFormField(
-    decoration: InputDecoration(
-      labelText: "Username",
-    ),
-    controller: _usernameCtrl,
-  );
-}
+  Widget _usernameTextField() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: "Username"),
+      controller: _usernameCtrl,
+    );
+  }
 
-Widget _passwordTextField() {
-  return TextFormField(
-    decoration: InputDecoration(
-      labelText: "Password",
-    ),
-    obscureText: true,
-    controller: _passwordCtrl,
-  );
-}
+  Widget _passwordTextField() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: "Password"),
+      obscureText: true,
+      controller: _passwordCtrl,
+    );
+  }
 
-Widget _tombolLogin() {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    child: ElevatedButton(child: Text("Login"), onPressed: (){}));
-}
-
+  Widget _tombolLogin() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+        child: Text("Login"),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Beranda()),
+          );
+        },
+      ),
+    );
+  }
 }
